@@ -45,3 +45,13 @@ const createDeck = (cardSuits, cardValues) => {
 };
 
 createDeck(cardSuits, cardValues);
+
+/* let deck = createDeck(cardSuits, cardValues);
+
+const dealCard = (deck) => {
+  return deck.pop;
+};
+
+let dealtCard = dealCard(deck);
+dealCard(deck);
+*/
