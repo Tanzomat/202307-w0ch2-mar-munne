@@ -55,7 +55,7 @@ const drawRandomCard = () => {
 
   const randomCard = cards[randomNumber];
 
-  return randomCard;
+  return console.log(randomCard);
 };
 
 drawRandomCard();
