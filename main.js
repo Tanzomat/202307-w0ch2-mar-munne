@@ -33,25 +33,29 @@ const cardValues = [
   "A",
 ];
 
-const createDeck = (cardSuits, cardValues) => {
+const createCardDeck = (cardSuits, cardValues) => {
   let deck = new Array();
+
   for (let i = 0; i < cardSuits.length; i++) {
     for (let j = 0; j < cardValues.length; j++) {
       let card = { cardValue: cardValues[j], cardSuit: cardSuits[i] };
+
       deck.push(card);
     }
   }
   return deck;
 };
 
-createDeck(cardSuits, cardValues);
+createCardDeck(cardSuits, cardValues);
 
-/* let deck = createDeck(cardSuits, cardValues);
+const drawRandomCard = () => {
+  const cards = createCardDeck();
 
-const dealCard = (deck) => {
-  return deck.pop;
+  const randomNumber = Math.floor(Math.random() * cards.length);
+
+  const randomCard = cards[randomNumber];
+
+  return randomCard;
 };
 
-let dealtCard = dealCard(deck);
-dealCard(deck);
-*/
+drawRandomCard();
