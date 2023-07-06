@@ -37,16 +37,16 @@ const createCardDeck = (cardSuits, cardValues) => {
   let deck = new Array();
 
   for (let i = 0; i < cardSuits.length; i++) {
-    for (let j = 0; j < cardValues.length; j++) {
-      let card = { cardValue: cardValues[j], cardSuit: cardSuits[i] };
+    const cardSuit = cardSuits[i];
 
-      deck.push(card);
+    for (let j = 0; j < cardValues.length; j++) {
+      const cardValue = cardValues[j];
+
+      deck.push({ cardSuit, cardValue });
     }
   }
   return deck;
 };
-
-createCardDeck(cardSuits, cardValues);
 
 const drawRandomCard = () => {
   const cards = createCardDeck();
@@ -55,7 +55,17 @@ const drawRandomCard = () => {
 
   const randomCard = cards[randomNumber];
 
-  return console.log(randomCard);
+  return randomCard;
 };
 
-drawRandomCard();
+const playHand = () => {
+  const randomCard = drawRandomCard();
+
+  console.log(
+    `The randomly generated card is: ${randomCard.value} de ${randomCard.suit}`
+  );
+
+  return randomCard;
+};
+
+playHand();
