@@ -42,14 +42,12 @@ const playHand = () => {
 
   const randomCard = drawRandomCard(deck);
 
-  const givenCardDisplay = document.querySelector(".givenCard");
-  const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
-
-  givenCardDisplay.innerHTML = randomCard;
-
   console.log(
     `The randomly generated card is: ${randomCard.cardValue} of ${randomCard.cardSuit}`
   );
+
+  const givenCardDisplay = document.querySelector(".givenCard");
+  givenCardDisplay.innerHTML = [randomCard.cardValue, randomCard.cardSuit];
 
   return randomCard;
 };
@@ -57,6 +55,8 @@ const playHand = () => {
 const startButtonElement = document.querySelector(".startButton");
 const higherButtonElement = document.querySelector(".higherButton");
 const lowerButtonElement = document.querySelector(".lowerButton");
+const givenCardElement = document.querySelector(".givenCard");
+const toBeGuessedCardElement = document.querySelector(".toBeGuessedCard");
 
 startButtonElement.addEventListener("click", playHand);
 
@@ -70,8 +70,19 @@ startButtonElement.addEventListener("click", () => {
 });
 
 startButtonElement.addEventListener("click", () => {
-  givenCardDisplay.classList.remove("hidden");
-  toBeGuessedCardDisplay.classList.remove("hidden");
+  givenCardElement.classList.remove("hidden");
+  toBeGuessedCardElement.classList.remove("hidden");
 });
 
-.
+higherButtonElement.addEventListener("click", playHand);
+
+lowerButtonElement.addEventListener("click", playHand);
+
+/*startButtonElement.addEventListener("click", () => {
+  givenCardElement.classList.remove("hidden");
+  toBeGuessedCardElement.classList.remove("hidden");
+});
+
+const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
+toBeGuessedCardDisplay.innerHTML = [randomCard.cardValue, randomCard.cardSuit];
+*/
