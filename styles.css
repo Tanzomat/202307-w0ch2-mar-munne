@@ -17,7 +17,7 @@ html {
 
 h1 {
   text-decoration: underline;
-  padding: 50px;
+  padding: 30px;
 }
 
 .main {
@@ -46,16 +46,20 @@ h1 {
   height: 400px;
   width: 600px;
   padding: 30px;
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(2, 1fr);
+  column-gap: 35px;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.205);
   border-radius: 5px;
   height: 300px;
   width: 200px;
-  gap: 20px;
   justify-content: center;
   align-items: center;
 }
