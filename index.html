@@ -6,11 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guess the card</title>
   <script src="main.js" defer></script>
-  <link rel="shortcut icon" href="icons8-star-filled-50.png" type="image/x-icon">
+  <link rel="shortcut icon" href="playing-cards.png" type="image/x-icon">
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+  <div class="container">
+    <main>
+      <h1 class="title">Higher or lower?</h1>
+      <br>
+      <button class="startButtonElement" onclick="playHand()">Start guessing!</button>
+      <br>
+      <br>
+      <button class="higherButtonElement" hidden>Higher</button>
+      <button class="lowerButtonElement" hidden>Lower</button>
+    </main>
+  </div>
 </body>
 
 </html>
