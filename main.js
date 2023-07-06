@@ -41,6 +41,12 @@ const playHand = () => {
   const deck = createCardDeck(cardSuits, cardValues);
 
   const randomCard = drawRandomCard(deck);
+
+  const givenCardDisplay = document.querySelector(".givenCard");
+  const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
+
+  givenCardDisplay.innerHTML = randomCard;
+
   console.log(
     `The randomly generated card is: ${randomCard.cardValue} of ${randomCard.cardSuit}`
   );
@@ -63,5 +69,7 @@ startButtonElement.addEventListener("click", () => {
   lowerButtonElement.classList.remove("hidden");
 });
 
-const givenCard = drawRandomCard(deck);
-const toBeGuessedCard = drawRandomCard(deck);
+startButtonElement.addEventListener("click", () => {
+  givenCardDisplay.classList.remove("hidden");
+  toBeGuessedCardDisplay.classList.remove("hidden");
+});
