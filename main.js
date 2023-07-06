@@ -1,38 +1,3 @@
-/* El objetivo del juego es adivinar si la siguiente carta en el mazo es mayor o menor que la carta actual. Se utiliza un mazo de cartas francesas que consta de 52 cartas.
-
-Las cartas están divididas en 4 palos: ♠️ (picas), ♣️ (tréboles), ♦️ (diamantes) y ♥️ (corazones).
-
-Cada palo tiene 13 cartas con los siguientes valores: 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jota), Q (reina), K (rey) y A (as).
-
-Para este challenge tendrás que programar las siguientes funcionalidades o _features_:
-
-- Generación de cartas: Crea una función que cree la baraja. Las cartas se generan combinando los valores y palos disponibles en el mazo de cartas francesas.
-
-- Obtención de una carta aleatoria: Implementa una función para obtener una carta aleatoria del array de cartas generado previamente. La carta no tiene que eliminarse del mazo.
-
-- Partida: Implementa una función que reúna todos los pasos de la partida, que por ahora sólo son dos:
-  - Crear la baraja
-  - Obtener una carta aleatoria e imprimirla por consola
-
-Nota: ninguna de las funciones debe usar una variable externa a ella misma (salvo para invocar a otras funciones). */
-
-const cardSuits = ["♠️", "♣️", "♦️", "♥️"];
-const cardValues = [
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "J",
-  "Q",
-  "K",
-  "A",
-];
-
 const createCardDeck = (cardSuits, cardValues) => {
   let deck = new Array();
 
@@ -48,24 +13,50 @@ const createCardDeck = (cardSuits, cardValues) => {
   return deck;
 };
 
-const drawRandomCard = () => {
-  const cards = createCardDeck();
+const drawRandomCard = (deck) => {
+  const randomNumber = Math.floor(Math.random() * deck.length);
 
-  const randomNumber = Math.floor(Math.random() * cards.length);
-
-  const randomCard = cards[randomNumber];
+  const randomCard = deck[randomNumber];
 
   return randomCard;
 };
 
 const playHand = () => {
-  const randomCard = drawRandomCard();
+  const cardSuits = ["♠️", "♣️", "♦️", "♥️"];
+  const cardValues = [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K",
+    "A",
+  ];
+  const deck = createCardDeck(cardSuits, cardValues);
+
+  const randomCard = drawRandomCard(deck);
 
   console.log(
-    `The randomly generated card is: ${randomCard.value} de ${randomCard.suit}`
+    `The randomly generated card is: ${randomCard.cardValue} of ${randomCard.cardSuit}`
   );
 
   return randomCard;
 };
 
 playHand();
+
+let displayCardElement = document.getElementById("randomCard");
+let startButtonElement = document.getElementById("startButtonElement");
+let higherButtonElement = document.getElementById("higherButton");
+let lowerButtonElement = document.getElementById("lowerButton");
+
+document.getElementById("startButtonElement").onclick = playHand();
+{
+  document.getElementById("startButtonElement").style.display = "none";
+}
