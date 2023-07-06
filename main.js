@@ -73,3 +73,5 @@ startButtonElement.addEventListener("click", () => {
   givenCardDisplay.classList.remove("hidden");
   toBeGuessedCardDisplay.classList.remove("hidden");
 });
+
+.
