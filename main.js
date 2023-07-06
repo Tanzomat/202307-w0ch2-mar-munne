@@ -49,9 +49,16 @@ const playHand = () => {
 };
 
 const startButtonElement = document.querySelector(".startButton");
+const higherButtonElement = document.querySelector(".higherButton");
+const lowerButtonElement = document.querySelector(".lowerButton");
 
 startButtonElement.addEventListener("click", playHand);
 
 startButtonElement.addEventListener("click", () => {
   startButtonElement.classList.add("hidden");
+});
+
+startButtonElement.addEventListener("click", () => {
+  higherButtonElement.classList.remove("hidden");
+  lowerButtonElement.classList.remove("hidden");
 });
