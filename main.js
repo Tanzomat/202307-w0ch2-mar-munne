@@ -62,3 +62,6 @@ startButtonElement.addEventListener("click", () => {
   higherButtonElement.classList.remove("hidden");
   lowerButtonElement.classList.remove("hidden");
 });
+
+const givenCard = drawRandomCard(deck);
+const toBeGuessedCard = drawRandomCard(deck);
