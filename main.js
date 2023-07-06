@@ -41,7 +41,6 @@ const playHand = () => {
   const deck = createCardDeck(cardSuits, cardValues);
 
   const randomCard = drawRandomCard(deck);
-
   console.log(
     `The randomly generated card is: ${randomCard.cardValue} of ${randomCard.cardSuit}`
   );
@@ -49,14 +48,10 @@ const playHand = () => {
   return randomCard;
 };
 
-playHand();
+const startButtonElement = document.querySelector(".startButton");
 
-let displayCardElement = document.getElementById("randomCard");
-let startButtonElement = document.getElementById("startButtonElement");
-let higherButtonElement = document.getElementById("higherButton");
-let lowerButtonElement = document.getElementById("lowerButton");
+startButtonElement.addEventListener("click", playHand);
 
-document.getElementById("startButtonElement").onclick = playHand();
-{
-  document.getElementById("startButtonElement").style.display = "none";
-}
+startButtonElement.addEventListener("click", () => {
+  startButtonElement.classList.add("hidden");
+});
