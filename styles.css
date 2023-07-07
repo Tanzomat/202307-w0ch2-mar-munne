@@ -7,7 +7,7 @@ html {
   font-family: "Courier New", Courier, monospace;
   box-sizing: inherit;
   margin: 0;
-  padding: 15px;
+  padding: 5px;
   font-size: 1.8rem;
   color: black;
   background-color: white;
@@ -43,7 +43,7 @@ h2 {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .card-container {
