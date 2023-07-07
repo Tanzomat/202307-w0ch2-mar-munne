@@ -1,3 +1,11 @@
+const startButtonElement = document.querySelector(".startButton");
+const higherButtonElement = document.querySelector(".higherButton");
+const lowerButtonElement = document.querySelector(".lowerButton");
+const givenCardElement = document.querySelector(".givenCard");
+const toBeGuessedCardElement = document.querySelector(".toBeGuessedCard");
+const cardContainerElement = document.querySelector(".card-container");
+const isNextCardHigherOrLowerElement = document.querySelector(".next-question");
+
 const createCardDeck = (cardSuits, cardValues) => {
   let deck = new Array();
 
@@ -21,7 +29,7 @@ const drawRandomCard = (deck) => {
   return randomCard;
 };
 
-const playHand = () => {
+const playHigherOrLowerGame = () => {
   const cardSuits = ["♠️", "♣️", "♦️", "♥️"];
   const cardValues = [
     "2",
@@ -47,43 +55,21 @@ const playHand = () => {
   );
 
   const givenCardDisplay = document.querySelector(".givenCard");
-  givenCardDisplay.innerHTML = `${randomCard.cardValue}${randomCard.cardSuit}`;
+  givenCardDisplay.textContent = `${randomCard.cardValue}${randomCard.cardSuit}`;
 
-  return randomCard;
+  startButtonElement.addEventListener("click", () => {
+    startButtonElement.classList.add("hidden");
+    higherButtonElement.classList.remove("hidden");
+    lowerButtonElement.classList.remove("hidden");
+    givenCardElement.classList.remove("hidden");
+    toBeGuessedCardElement.classList.remove("hidden");
+    cardContainerElement.classList.remove("hidden");
+    isNextCardHigherOrLowerElement.classList.remove("hidden");
+  });
 };
 
-const startButtonElement = document.querySelector(".startButton");
-const higherButtonElement = document.querySelector(".higherButton");
-const lowerButtonElement = document.querySelector(".lowerButton");
-const givenCardElement = document.querySelector(".givenCard");
-const toBeGuessedCardElement = document.querySelector(".toBeGuessedCard");
-const cardContainerElement = document.querySelector(".card-container");
-const isNextCardHigherOrLowerElement = document.querySelector(".next-question");
+startButtonElement.addEventListener("click", playHigherOrLowerGame);
 
-startButtonElement.addEventListener("click", playHand);
+higherButtonElement.addEventListener("click", playHigherOrLowerGame);
 
-startButtonElement.addEventListener("click", () => {
-  startButtonElement.classList.add("hidden");
-});
-
-startButtonElement.addEventListener("click", () => {
-  higherButtonElement.classList.remove("hidden");
-  lowerButtonElement.classList.remove("hidden");
-});
-
-startButtonElement.addEventListener("click", () => {
-  givenCardElement.classList.remove("hidden");
-  toBeGuessedCardElement.classList.remove("hidden");
-});
-
-startButtonElement.addEventListener("click", () => {
-  cardContainerElement.classList.remove("hidden");
-});
-
-startButtonElement.addEventListener("click", () => {
-  isNextCardHigherOrLowerElement.classList.remove("hidden");
-});
-
-higherButtonElement.addEventListener("click", playHand);
-
-lowerButtonElement.addEventListener("click", playHand);
+lowerButtonElement.addEventListener("click", playHigherOrLowerGame);
