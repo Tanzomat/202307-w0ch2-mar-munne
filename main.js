@@ -47,7 +47,7 @@ const playHand = () => {
   );
 
   const givenCardDisplay = document.querySelector(".givenCard");
-  givenCardDisplay.innerHTML = [randomCard.cardValue, randomCard.cardSuit];
+  givenCardDisplay.innerHTML = `${randomCard.cardValue}${randomCard.cardSuit}`;
 
   return randomCard;
 };
@@ -57,6 +57,8 @@ const higherButtonElement = document.querySelector(".higherButton");
 const lowerButtonElement = document.querySelector(".lowerButton");
 const givenCardElement = document.querySelector(".givenCard");
 const toBeGuessedCardElement = document.querySelector(".toBeGuessedCard");
+const cardContainerElement = document.querySelector(".card-container");
+const isNextCardHigherOrLowerElement = document.querySelector(".next-question");
 
 startButtonElement.addEventListener("click", playHand);
 
@@ -74,15 +76,14 @@ startButtonElement.addEventListener("click", () => {
   toBeGuessedCardElement.classList.remove("hidden");
 });
 
+startButtonElement.addEventListener("click", () => {
+  cardContainerElement.classList.remove("hidden");
+});
+
+startButtonElement.addEventListener("click", () => {
+  isNextCardHigherOrLowerElement.classList.remove("hidden");
+});
+
 higherButtonElement.addEventListener("click", playHand);
 
 lowerButtonElement.addEventListener("click", playHand);
-
-/*startButtonElement.addEventListener("click", () => {
-  givenCardElement.classList.remove("hidden");
-  toBeGuessedCardElement.classList.remove("hidden");
-});
-
-const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
-toBeGuessedCardDisplay.innerHTML = [randomCard.cardValue, randomCard.cardSuit];
-*/
