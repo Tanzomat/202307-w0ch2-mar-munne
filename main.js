@@ -1,10 +1,7 @@
 const startButtonElement = document.querySelector(".startButton");
-const higherButtonElement = document.querySelector(".higherButton");
-const lowerButtonElement = document.querySelector(".lowerButton");
-const givenCardElement = document.querySelector(".givenCard");
-const toBeGuessedCardElement = document.querySelector(".toBeGuessedCard");
-const cardContainerElement = document.querySelector(".card-container");
 const isNextCardHigherOrLowerElement = document.querySelector(".next-question");
+const welcomeScreenElements = document.querySelector(".welcomeScreenItems");
+const playingScreenElements = document.querySelector(".playingScreenItems");
 
 const createCardDeck = (cardSuits, cardValues) => {
   let deck = new Array();
@@ -59,12 +56,9 @@ const playHigherOrLowerGame = () => {
 
   startButtonElement.addEventListener("click", () => {
     startButtonElement.classList.add("hidden");
-    higherButtonElement.classList.remove("hidden");
-    lowerButtonElement.classList.remove("hidden");
-    givenCardElement.classList.remove("hidden");
-    toBeGuessedCardElement.classList.remove("hidden");
-    cardContainerElement.classList.remove("hidden");
     isNextCardHigherOrLowerElement.classList.remove("hidden");
+    welcomeScreenElements.classList.add("hidden");
+    playingScreenElements.classList.remove("hidden");
   });
 };
 
