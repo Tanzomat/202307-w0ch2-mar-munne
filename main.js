@@ -28,7 +28,7 @@ const drawRandomCard = (deck) => {
   return randomCard;
 };
 
-const playHigherOrLowerGame = () => {
+const getRandomCards = () => {
   const cardSuits = ["♠️", "♣️", "♦️", "♥️"];
   const cardValues = [
     "2",
@@ -47,28 +47,44 @@ const playHigherOrLowerGame = () => {
   ];
   const deck = createCardDeck(cardSuits, cardValues);
 
-  const randomCard = drawRandomCard(deck);
-  const firstRandomCard = drawRandomCard(deck);
+  return [drawRandomCard(deck), drawRandomCard(deck)];
+};
+
+const playHigherOrLowerGame = () => {
+  const [firstRandomCard, secondRandomCard] = getRandomCards();
 
   console.log(
-    `The randomly generated card is: ${randomCard.cardValue} of ${randomCard.cardSuit}`
+    `The randomly generated card is: ${firstRandomCard.cardValue} of ${firstRandomCard.cardSuit}`
   );
 
   const givenCardDisplay = document.querySelector(".givenCard");
   givenCardDisplay.textContent = `${firstRandomCard.cardValue}${firstRandomCard.cardSuit}`;
 
   const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
-  toBeGuessedCardDisplay.textContent = `${randomCard.cardValue}${randomCard.cardSuit}`;
-
-  startButtonElement.addEventListener("click", () => {
-    startButtonElement.classList.add("hidden");
-    isNextCardHigherOrLowerElement.classList.remove("hidden");
-    welcomeScreenElements.classList.add("hidden");
-    playingScreenElements.classList.remove("hidden");
-  });
+  toBeGuessedCardDisplay.textContent = `${secondRandomCard.cardValue}${secondRandomCard.cardSuit}`;
 };
 
-startButtonElement.addEventListener("click", playHigherOrLowerGame);
+const displayFirstCard = () => {
+  const [firstRandomCard] = getRandomCards();
+
+  console.log(
+    `The randomly generated card is: ${firstRandomCard.cardValue} of ${firstRandomCard.cardSuit}`
+  );
+
+  const givenCardDisplay = document.querySelector(".givenCard");
+  givenCardDisplay.textContent = `${firstRandomCard.cardValue}${firstRandomCard.cardSuit}`;
+
+  const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
+  toBeGuessedCardDisplay.textContent = `?`;
+};
+
+startButtonElement.addEventListener("click", () => {
+  displayFirstCard();
+  startButtonElement.classList.add("hidden");
+  isNextCardHigherOrLowerElement.classList.remove("hidden");
+  welcomeScreenElements.classList.add("hidden");
+  playingScreenElements.classList.remove("hidden");
+});
 
 higherButtonElement.addEventListener("click", playHigherOrLowerGame);
 

@@ -1,0 +1,61 @@
+1.
+
+/* El objetivo del juego es adivinar si la siguiente carta en el mazo es mayor o menor que la carta actual. Se utiliza un mazo de cartas francesas que consta de 52 cartas.
+
+Las cartas están divididas en 4 palos: ♠️ (picas), ♣️ (tréboles), ♦️ (diamantes) y ♥️ (corazones).
+
+Cada palo tiene 13 cartas con los siguientes valores: 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jota), Q (reina), K (rey) y A (as).
+
+Para este challenge tendrás que programar las siguientes funcionalidades o _features_:
+
+- Generación de cartas: Crea una función que cree la baraja. Las cartas se generan combinando los valores y palos disponibles en el mazo de cartas francesas.
+
+- Obtención de una carta aleatoria: Implementa una función para obtener una carta aleatoria del array de cartas generado previamente. La carta no tiene que eliminarse del mazo.
+
+- Partida: Implementa una función que reúna todos los pasos de la partida, que por ahora sólo son dos:
+  - Crear la baraja
+  - Obtener una carta aleatoria e imprimirla por consola
+
+Nota: ninguna de las funciones debe usar una variable externa a ella misma (salvo para invocar a otras funciones). */
+
+2.
+
+Crea una interfaz de usuario en HTML para el juego de cartas. Debe tener los siguientes elementos:
+
+- Un título
+- Un botón para empezar el juego
+- Un botón para decir que la siguiente carta será mayor
+- Un botón para decir que la siguiente carta será menor
+- La carta actual
+- La nueva carta (invisible o visible según toque)
+- Un elemento para mostrar el mensaje de victoria o derrota
+
+Cuando el usuario pulse el botón para empezar el juego se debe crear la baraja y obtener la primera carta, que se mostrará en la interfaz.
+
+Cuando el usuario pulse el botón de mayor o menor se debe obtener una nueva carta, mostrarla y comprobar si ha ganado o perdido. 
+Se debe también mostrar un mensaje de victoria o derrota.
+
+
+make hidden elements container
+contgainer de presentación del juego, container del juego. 
+
+ganar/perder: un solo elemento y que con js te diga una cosa si ganas y otra si pierdes
+
+span class para elementos de la carta
+
+necesito (orden de prioridad: 1 > 2 > 3...):
+
+HTML:
+- pasar cosas a kebabcase y ajustar files accordingly.
+- crear elemento para el mensaje de "has ganado"/"has perdido"
+
+JS:
+- hacer que higherButton y lowerButton hagan cosas + linkearlo a mensaje "has ganado"/"has perdido".
+- hacer que la toBeGuessedCard aparezca inicialmente como "?", to then cambiar a la carta generada aleatoriamente
+
+CSS:
+- alinear botones
+- estilizar botones (estilo 3D, maybe?)
+- bordes
+
+
