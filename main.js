@@ -1,5 +1,5 @@
 const startButtonElement = document.querySelector(".startButton");
-const isNextCardHigherOrLowerElement = document.querySelector(".next-question");
+const userMessage = document.querySelector(".user-message");
 const welcomeScreenElements = document.querySelector(".welcomeScreenItems");
 const playingScreenElements = document.querySelector(".playingScreenItems");
 const higherButtonElement = document.querySelector(".higherButton");
@@ -50,42 +50,90 @@ const getRandomCards = () => {
   return [drawRandomCard(deck), drawRandomCard(deck)];
 };
 
-const playHigherOrLowerGame = () => {
+const checkGuessResult = (
+  firstRandomCardValue,
+  secondRandomCardValue,
+  guess
+) => {
+  if (firstRandomCardValue === secondRandomCardValue)
+    return "You tied, better luck next time! :(";
+  if (
+    (firstRandomCardValue > secondRandomCardValue && guess === "lower") ||
+    (firstRandomCardValue < secondRandomCardValue && guess === "higher")
+  )
+    return "Congrats! You won :)";
+  return "Sorry, try again! :(";
+};
+
+const playHigherOrLowerGame = (guess) => {
+  higherButtonElement.disabled = true;
+  lowerButtonElement.disabled = true;
+
+  const firstRandomCard = {
+    cardValue: localStorage.getItem("firstCardValue"),
+    cardSuit: localStorage.getItem("firstCardSuit"),
+  };
+  const secondRandomCard = {
+    cardValue: localStorage.getItem("secondCardValue"),
+    cardSuit: localStorage.getItem("secondCardSuit"),
+  };
+
+  console.log({ firstRandomCard, secondRandomCard });
+
+  console.log(
+    `The randomly generated card is: ${firstRandomCard.cardValue} of ${firstRandomCard.cardSuit}`
+  );
+
+  const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
+  toBeGuessedCardDisplay.textContent = `${secondRandomCard.cardValue}${secondRandomCard.cardSuit}`;
+
+  const resultMessage = checkGuessResult(
+    firstRandomCard.cardValue,
+    secondRandomCard.cardValue,
+    guess
+  );
+
+  userMessage.textContent = resultMessage;
+};
+
+const displayFirstCard = () => {
   const [firstRandomCard, secondRandomCard] = getRandomCards();
 
   console.log(
     `The randomly generated card is: ${firstRandomCard.cardValue} of ${firstRandomCard.cardSuit}`
   );
 
-  const givenCardDisplay = document.querySelector(".givenCard");
-  givenCardDisplay.textContent = `${firstRandomCard.cardValue}${firstRandomCard.cardSuit}`;
-
-  const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
-  toBeGuessedCardDisplay.textContent = `${secondRandomCard.cardValue}${secondRandomCard.cardSuit}`;
-};
-
-const displayFirstCard = () => {
-  const [firstRandomCard] = getRandomCards();
-
-  console.log(
-    `The randomly generated card is: ${firstRandomCard.cardValue} of ${firstRandomCard.cardSuit}`
-  );
+  userMessage.textContent = "Will the next card be higher or lower?";
 
   const givenCardDisplay = document.querySelector(".givenCard");
   givenCardDisplay.textContent = `${firstRandomCard.cardValue}${firstRandomCard.cardSuit}`;
 
   const toBeGuessedCardDisplay = document.querySelector(".toBeGuessedCard");
   toBeGuessedCardDisplay.textContent = `?`;
+
+  localStorage.setItem("firstCardValue", firstRandomCard.cardValue);
+  localStorage.setItem("firstCardSuit", firstRandomCard.cardSuit);
+  localStorage.setItem("secondCardValue", secondRandomCard.cardValue);
+  localStorage.setItem("secondCardSuit", secondRandomCard.cardSuit);
+  higherButtonElement.disabled = false;
+  lowerButtonElement.disabled = false;
+};
+
+const handleGuessButtons = async (guess) => {
+  playHigherOrLowerGame(guess);
+  setTimeout(displayFirstCard, "2000");
 };
 
 startButtonElement.addEventListener("click", () => {
   displayFirstCard();
   startButtonElement.classList.add("hidden");
-  isNextCardHigherOrLowerElement.classList.remove("hidden");
+  userMessage.classList.remove("hidden");
   welcomeScreenElements.classList.add("hidden");
   playingScreenElements.classList.remove("hidden");
 });
 
-higherButtonElement.addEventListener("click", playHigherOrLowerGame);
+higherButtonElement.addEventListener("click", () =>
+  handleGuessButtons("higher")
+);
 
-lowerButtonElement.addEventListener("click", playHigherOrLowerGame);
+lowerButtonElement.addEventListener("click", () => handleGuessButtons("lower"));
